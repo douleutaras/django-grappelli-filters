@@ -61,8 +61,8 @@ class RelatedAutocompleteFilter(AbstractFieldListFilter):
         if self.model:
             content_type = ContentType.objects.get_for_model(self.model)
         else:
-            content_type = ContentType.objects.get_for_model(field.rel.to)
-        self.grappelli_trick = '/{app_label}/{model_name}/'.format(
+            content_type = ContentType.objects.get_for_model(field.remote_field.model)
+        self.grappelli_trick = '/{app_label}/{model_name}/?_to_field=id'.format(
             app_label=content_type.app_label,
             model_name=content_type.model
         )
